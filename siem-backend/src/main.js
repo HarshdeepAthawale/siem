@@ -49,6 +49,19 @@ async function main() {
       logger.info(`API available at http://localhost:${config.server.port}/api`);
     });
 
+    server.on('error', (error) => {
+      if (error.code === 'EADDRINUSE') {
+        logger.error(`Port ${config.server.port} is already in use. Please stop the other process or change the port.`);
+        logger.info(`To find and kill the process using port ${config.server.port}, run:`);
+        logger.info(`  Windows: netstat -ano | findstr :${config.server.port}`);
+        logger.info(`  Then: taskkill /PID <PID> /F`);
+        process.exit(1);
+      } else {
+        logger.error('Server error:', error);
+        throw error;
+      }
+    });
+
     // Graceful shutdown
     process.on('SIGTERM', async () => {
       logger.info('SIGTERM received, shutting down gracefully');

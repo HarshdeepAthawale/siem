@@ -23,10 +23,10 @@ const config: Config = {
         },
         'border-dark': '#1a1a1a',
         accent: {
-          DEFAULT: '#a855f7',
-          hover: '#9333ea',
-          light: '#c084fc',
-          dark: '#7c3aed',
+          DEFAULT: '#00d9ff',
+          hover: '#00b8d9',
+          light: '#33e0ff',
+          dark: '#0099cc',
         },
         severity: {
           low: '#10b981',
@@ -35,8 +35,8 @@ const config: Config = {
           critical: '#ef4444',
         },
         gradient: {
-          start: '#a855f7',
-          end: '#ec4899',
+          start: '#00d9ff',
+          end: '#0099cc',
         },
       },
     },

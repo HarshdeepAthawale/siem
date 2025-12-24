@@ -9,7 +9,6 @@ const alertSchema = new mongoose.Schema({
   source_ip: {
     type: String,
     required: true,
-    index: true,
   },
   severity: {
     type: String,
@@ -56,7 +55,6 @@ const alertSchema = new mongoose.Schema({
   false_positive: {
     type: Boolean,
     default: false,
-    index: true,
   },
   acknowledged: {
     type: Boolean,
@@ -79,7 +77,6 @@ const alertSchema = new mongoose.Schema({
   tags: {
     type: [String],
     default: [],
-    index: true,
   },
   notes: {
     type: String,

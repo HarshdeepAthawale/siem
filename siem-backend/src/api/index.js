@@ -18,10 +18,27 @@ export const createAPI = () => {
   app.use('/api/alerts', alertsRouter);
   app.use('/api/metrics', metricsRouter);
 
-  // Error handling
+  // 404 handler for unmatched routes
+  app.use('/api/*', (req, res) => {
+    logger.warn(`404 - Route not found: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ 
+      error: 'Not Found',
+      message: `API endpoint ${req.method} ${req.originalUrl} not found`,
+      availableEndpoints: [
+        'GET /api/health',
+        'GET /api/logs',
+        'GET /api/alerts',
+        'GET /api/metrics',
+      ]
+    });
+  });
+
+  // Error handling middleware
   app.use((err, req, res, next) => {
     logger.error('API Error:', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(err.status || 500).json({ 
+      error: err.message || 'Internal server error' 
+    });
   });
 
   return app;

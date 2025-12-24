@@ -32,7 +32,7 @@ cp .env.example .env
 npm start
 ```
 
-Backend will run on `http://localhost:3001`
+Backend will run on `http://localhost:3000`
 
 ## Step 3: Setup Frontend
 
@@ -56,7 +56,7 @@ Frontend will run on `http://localhost:3000`
 
 Open your browser and navigate to:
 - Frontend: http://localhost:3000
-- Backend API: http://localhost:3001/api/health
+- Backend API: http://localhost:3000/api/health
 
 ## Testing the System
 
@@ -81,7 +81,7 @@ The system supports:
 
 ### Port Already in Use
 - Backend: Change `PORT` in `siem-backend/.env`
-- Frontend: Change port in `siem-frontend/package.json` scripts or use `npm run dev -- -p 3001`
+- Frontend: Change port in `siem-frontend/package.json` scripts or use `npm run dev -- -p 3002`
 
 ### No Data Showing
 - Check backend logs for errors

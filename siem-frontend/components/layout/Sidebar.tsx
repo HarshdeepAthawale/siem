@@ -12,7 +12,6 @@ import {
   Activity
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
@@ -29,12 +28,9 @@ export function Sidebar() {
   return (
     <div className="w-64 bg-gray-50 dark:bg-black border-r border-gray-200 dark:border-gray-800 flex flex-col transition-colors">
       <div className="p-6 border-b border-gray-200 dark:border-gray-800">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <Shield className="w-6 h-6 text-accent" />
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">SIEM</h1>
-          </div>
-          <ThemeToggle />
+        <div className="flex items-center gap-2 mb-2">
+          <Shield className="w-6 h-6 text-accent" />
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white">SIEM</h1>
         </div>
         <p className="text-xs text-gray-600 dark:text-gray-400">Security Operations</p>
       </div>
@@ -61,13 +57,6 @@ export function Sidebar() {
           )
         })}
       </nav>
-
-      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-        <div className="text-xs text-gray-600 dark:text-gray-400">
-          <div>SIEM Platform v1.0</div>
-          <div className="mt-1">Production Ready</div>
-        </div>
-      </div>
     </div>
   )
 }
