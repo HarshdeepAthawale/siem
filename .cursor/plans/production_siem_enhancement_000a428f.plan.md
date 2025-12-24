@@ -4,68 +4,68 @@ overview: Transform the SIEM platform from demo to production-ready with Windows
 todos:
   - id: windows-event-model
     content: Enhance Event model with Windows Event Log fields (event_id, logon_type, process_name, command_line, etc.) and add appropriate indexes
-    status: pending
+    status: completed
   - id: windows-parser
     content: Create Windows Event Log parser supporting Event IDs 4624, 4625, 4672, 4648, 4688, 5145, 4657 with XML and CSV format support
-    status: pending
+    status: completed
     dependencies:
       - windows-event-model
   - id: windows-collector
     content: Create Windows Event Log collector supporting file-based collection (.evtx, XML, CSV) and WMI queries
-    status: pending
+    status: completed
   - id: update-multiparser
     content: Update MultiParser to include Windows Event Log parser in the parsing chain
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: rdp-brute-force
     content: Implement RDP brute force detector for Windows Event ID 4625 (Logon Type 10)
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: privilege-escalation
     content: Implement privilege escalation detector for Event IDs 4672, 4648 with UAC bypass detection
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: malware-detector
     content: Implement malware detector with suspicious process patterns, temp directory execution, unsigned executables, and PowerShell encoded commands
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: lateral-movement
     content: Implement lateral movement detector tracking Event ID 4648 across hosts, SMB access, and RDP connections
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: data-exfiltration
     content: Implement data exfiltration detector monitoring Event ID 5145, large file transfers, and unusual data access patterns
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: anomaly-detector
     content: Implement anomaly detection engine with baseline learning, statistical analysis, and ML-ready architecture
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: correlation-engine
     content: Implement correlation engine for multi-event attack chain detection with state machine and time-window correlation
-    status: pending
+    status: completed
     dependencies:
       - rdp-brute-force
       - privilege-escalation
       - lateral-movement
   - id: compliance-detector
     content: Implement compliance detector tracking failed authentications, admin usage, and policy violations
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: enhanced-alert-model
     content: Enhance Alert model with correlated_events, attack_chain, confidence_score, false_positive, acknowledged, assigned_to, and tags fields
-    status: pending
+    status: completed
   - id: update-detection-engine
     content: Update DetectionEngine to include all new detectors with priority ordering, enable/disable config, and parallel execution
-    status: pending
+    status: completed
     dependencies:
       - rdp-brute-force
       - privilege-escalation
@@ -77,32 +77,32 @@ todos:
       - compliance-detector
   - id: update-normalizer
     content: Update normalizer to handle Windows Event Log normalization, Event ID mapping, and severity calculation
-    status: pending
+    status: completed
     dependencies:
       - windows-parser
   - id: alert-api-enhancements
     content: Add API endpoints for alert acknowledgment, assignment, false positive marking, and correlation view
-    status: pending
+    status: completed
     dependencies:
       - enhanced-alert-model
   - id: alert-triage-ui
     content: Enhance alerts page with acknowledge, assign, false positive buttons, alert details modal, and attack chain visualization
-    status: pending
+    status: completed
     dependencies:
       - alert-api-enhancements
   - id: rules-management-ui
     content: Create rules management page for viewing, enabling/disabling, and configuring detection rules
-    status: pending
+    status: completed
     dependencies:
       - update-detection-engine
   - id: anomaly-dashboard
     content: Create anomaly dashboard page showing detected anomalies, baseline comparisons, and severity visualizations
-    status: pending
+    status: completed
     dependencies:
       - anomaly-detector
   - id: detection-config
     content: Add comprehensive detection configuration to config/index.js with thresholds, time windows, and rule definitions
-    status: pending
+    status: completed
 ---
 
 # Production
@@ -405,7 +405,3 @@ Windows Event Logs → Windows Collector → Windows Parser → Normalizer → M
 - Create Windows Event Log sample files for testing
 - Unit tests for each parser
 - Unit tests for each detector
-- Integration tests for detection engine
-- Performance tests for large-scale event processing
-
-## Configuration Files

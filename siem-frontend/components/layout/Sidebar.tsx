@@ -7,7 +7,9 @@ import {
   FileText, 
   AlertTriangle, 
   BarChart3,
-  Shield
+  Shield,
+  Settings,
+  Activity
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
@@ -17,6 +19,8 @@ const navigation = [
   { name: 'Logs', href: '/logs', icon: FileText },
   { name: 'Alerts', href: '/alerts', icon: AlertTriangle },
   { name: 'Metrics', href: '/metrics', icon: BarChart3 },
+  { name: 'Anomalies', href: '/anomalies', icon: Activity },
+  { name: 'Rules', href: '/rules', icon: Settings },
 ]
 
 export function Sidebar() {

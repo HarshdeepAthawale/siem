@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { config } from '../../src/config/index.js';
-import { Event } from '../../src/database/models/Event.js';
-import { Alert } from '../../src/database/models/Alert.js';
+import { config } from '../../config/index.js';
+import { Event } from '../models/Event.js';
+import { Alert } from '../models/Alert.js';
 import readline from 'readline';
 
 const rl = readline.createInterface({

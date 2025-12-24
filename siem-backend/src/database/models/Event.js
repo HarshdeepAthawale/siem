@@ -18,6 +18,7 @@ const eventSchema = new mongoose.Schema({
   username: {
     type: String,
     required: false,
+    index: true,
   },
   event_type: {
     type: String,
@@ -50,6 +51,49 @@ const eventSchema = new mongoose.Schema({
     default: Date.now,
     index: true,
   },
+  // Windows Event Log specific fields
+  event_id: {
+    type: Number,
+    required: false,
+    index: true,
+  },
+  logon_type: {
+    type: Number,
+    required: false,
+  },
+  process_name: {
+    type: String,
+    required: false,
+    index: true,
+  },
+  command_line: {
+    type: String,
+    required: false,
+  },
+  target_username: {
+    type: String,
+    required: false,
+  },
+  privilege_list: {
+    type: String,
+    required: false,
+  },
+  file_path: {
+    type: String,
+    required: false,
+  },
+  registry_key: {
+    type: String,
+    required: false,
+  },
+  hostname: {
+    type: String,
+    required: false,
+  },
+  domain: {
+    type: String,
+    required: false,
+  },
 }, {
   timestamps: false,
   collection: 'events',
@@ -60,6 +104,11 @@ eventSchema.index({ source_ip: 1, timestamp: -1 });
 eventSchema.index({ event_type: 1, timestamp: -1 });
 eventSchema.index({ severity: 1, timestamp: -1 });
 eventSchema.index({ timestamp: -1 });
+// Windows Event Log specific indexes
+eventSchema.index({ event_id: 1, timestamp: -1 });
+eventSchema.index({ username: 1, timestamp: -1 });
+eventSchema.index({ process_name: 1, timestamp: -1 });
+eventSchema.index({ event_id: 1, source_ip: 1, timestamp: -1 });
 
 export const Event = mongoose.model('Event', eventSchema);
 

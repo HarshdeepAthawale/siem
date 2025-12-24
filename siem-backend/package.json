@@ -8,9 +8,9 @@
     "start": "node src/main.js",
     "dev": "node --watch src/main.js",
     "setup": "node setup-env.js",
-    "db:init": "node mongodb/scripts/init.js",
-    "db:seed": "node mongodb/scripts/seed.js",
-    "db:clear": "node mongodb/scripts/clear.js"
+    "db:init": "node src/database/scripts/init.js",
+    "db:seed": "node src/database/scripts/seed.js",
+    "db:clear": "node src/database/scripts/clear.js"
   },
   "keywords": ["siem", "security", "mongodb"],
   "author": "",

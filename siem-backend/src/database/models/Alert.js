@@ -38,6 +38,53 @@ const alertSchema = new mongoose.Schema({
     default: Date.now,
     index: true,
   },
+  // Enhanced fields for production SIEM
+  correlated_events: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: [],
+  },
+  attack_chain: {
+    type: [String],
+    default: [],
+  },
+  confidence_score: {
+    type: Number,
+    min: 0,
+    max: 100,
+    default: 50,
+  },
+  false_positive: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  acknowledged: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  acknowledged_at: {
+    type: Date,
+    required: false,
+  },
+  acknowledged_by: {
+    type: String,
+    required: false,
+  },
+  assigned_to: {
+    type: String,
+    required: false,
+    index: true,
+  },
+  tags: {
+    type: [String],
+    default: [],
+    index: true,
+  },
+  notes: {
+    type: String,
+    required: false,
+  },
 }, {
   timestamps: false,
   collection: 'alerts',
@@ -47,6 +94,12 @@ const alertSchema = new mongoose.Schema({
 alertSchema.index({ severity: 1, created_at: -1 });
 alertSchema.index({ source_ip: 1 });
 alertSchema.index({ created_at: -1 });
+// Triage workflow indexes
+alertSchema.index({ acknowledged: 1, created_at: -1 });
+alertSchema.index({ false_positive: 1 });
+alertSchema.index({ assigned_to: 1, acknowledged: 1 });
+alertSchema.index({ tags: 1 });
+alertSchema.index({ alert_type: 1, severity: 1, created_at: -1 });
 
 export const Alert = mongoose.model('Alert', alertSchema);
 

@@ -24,6 +24,16 @@ export interface Alert {
   last_seen: string;
   description: string;
   created_at: string;
+  correlated_events?: string[];
+  attack_chain?: string[];
+  confidence_score?: number;
+  false_positive?: boolean;
+  acknowledged?: boolean;
+  acknowledged_at?: string;
+  acknowledged_by?: string;
+  assigned_to?: string;
+  tags?: string[];
+  notes?: string;
 }
 
 export interface PaginatedResponse<T> {
@@ -72,6 +82,10 @@ export interface AlertsQueryParams {
   to?: string;
   page?: number;
   limit?: number;
+  acknowledged?: string;
+  false_positive?: string;
+  assigned_to?: string;
+  tags?: string;
 }
 
 async function fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> {
@@ -123,5 +137,32 @@ export const api = {
     if (params?.to) searchParams.append('to', params.to);
     return fetchAPI<Metrics>(`/metrics?${searchParams.toString()}`);
   },
+
+  // Alert triage operations
+  getAlert: (id: string) => fetchAPI<Alert & { correlated_events_data?: Event[] }>(`/alerts/${id}`),
+  
+  acknowledgeAlert: (id: string, acknowledged_by?: string) =>
+    fetchAPI<Alert>(`/alerts/${id}/acknowledge`, {
+      method: 'PATCH',
+      body: JSON.stringify({ acknowledged_by }),
+    }),
+  
+  assignAlert: (id: string, assigned_to: string) =>
+    fetchAPI<Alert>(`/alerts/${id}/assign`, {
+      method: 'PATCH',
+      body: JSON.stringify({ assigned_to }),
+    }),
+  
+  markFalsePositive: (id: string, false_positive: boolean) =>
+    fetchAPI<Alert>(`/alerts/${id}/false-positive`, {
+      method: 'PATCH',
+      body: JSON.stringify({ false_positive }),
+    }),
+  
+  updateAlertNotes: (id: string, notes: string) =>
+    fetchAPI<Alert>(`/alerts/${id}/notes`, {
+      method: 'PATCH',
+      body: JSON.stringify({ notes }),
+    }),
 };
 
