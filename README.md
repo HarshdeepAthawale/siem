@@ -2,7 +2,7 @@
 
 Production-grade Security Information and Event Management (SIEM) platform built with MongoDB, Node.js, and Next.js.
 
-## 🏗️ Architecture
+## Architecture
 
 ### Backend (`siem-backend/`)
 - **Runtime**: Node.js (ES Modules)
@@ -17,7 +17,7 @@ Production-grade Security Information and Event Management (SIEM) platform built
 - **Charts**: Recharts
 - **Theme**: Dark SOC/Cybersecurity theme
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js (LTS)
@@ -33,7 +33,7 @@ cp .env.example .env
 npm start
 ```
 
-Backend runs on `http://localhost:3001`
+Backend runs on `http://localhost:3000`
 
 ### Frontend Setup
 
@@ -41,35 +41,35 @@ Backend runs on `http://localhost:3001`
 cd siem-frontend
 npm install
 cp .env.local.example .env.local
-# Edit .env.local with backend API URL (default: http://localhost:3001/api)
+# Edit .env.local with backend API URL (default: http://localhost:3000/api)
 npm run dev
 ```
 
 Frontend runs on `http://localhost:3000`
 
-## 📊 Features
+## Features
 
 ### Backend
-- ✅ MongoDB connection with proper indexing
-- ✅ Event ingestion pipeline (File collector, SSH/HTTP parsers)
-- ✅ Detection engine with MongoDB aggregations
-- ✅ SSH brute force detection rule
-- ✅ REST API (health, logs, alerts, metrics)
-- ✅ Winston logging
+- MongoDB connection with proper indexing
+- Event ingestion pipeline (File collector, SSH/HTTP parsers)
+- Detection engine with MongoDB aggregations
+- SSH brute force detection rule
+- REST API (health, logs, alerts, metrics)
+- Winston logging
 
 ### Frontend
-- ✅ SOC-themed dark dashboard
-- ✅ Real-time metrics and charts
-- ✅ Event logs with filtering and pagination
-- ✅ Alerts management interface
-- ✅ Metrics and analytics page
-- ✅ Responsive design
+- SOC-themed dark dashboard
+- Real-time metrics and charts
+- Event logs with filtering and pagination
+- Alerts management interface
+- Metrics and analytics page
+- Responsive design
 
-## 🔍 Detection Rules
+## Detection Rules
 
 - **SSH Brute Force**: Detects multiple failed SSH login attempts from the same IP within a configurable time window (default: 5 attempts in 2 minutes)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 siem/
@@ -91,28 +91,28 @@ siem/
 └── README.md
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 - `GET /api/health` - Health check
 - `GET /api/logs` - Query events (filters: ip, severity, type, from, to)
 - `GET /api/alerts` - Query alerts (filters: severity, ip, from, to)
 - `GET /api/metrics` - Dashboard metrics and aggregations
 
-## 🎨 Design System
+## Design System
 
 - **Background**: `#0b0f1a`
 - **Panels**: `#111827`
 - **Borders**: `#1f2937`
 - **Accent**: Cyan/Electric Blue (`#00d9ff`)
 
-## 📝 Notes
+## Notes
 
 - Backend uses MongoDB aggregation pipelines for efficient detection
 - All queries are indexed for performance
 - Frontend auto-refreshes data every 30 seconds
 - Sample log file is created automatically if missing
 
-## 🔒 Security Considerations
+## Security Considerations
 
 This is a demonstration SIEM platform. For production use:
 - Implement authentication and authorization
